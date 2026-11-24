@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>नागरिक सहायता — Nagrik Sahayata | Civic Rights Helper for India</title>
+<meta name="description" content="Hindi-first civic-rights helper for India: step-by-step RTI, consumer complaint, police complaint, cybercrime and grievance guides, copyable letter templates, and a community help board. Works fully offline in your browser; your data never leaves your device.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <p class="kicker">🇮🇳 Code for Change — Social Good</p>
+    <h1>नागरिक सहायता <span>Nagrik Sahayata</span></h1>
+    <p id="tagline">अपने अधिकार जानिए, सही कदम उठाइए — हिंदी और English में।</p>
+    <p class="sub">Step-by-step guides for RTI, consumer complaints, police complaints, cybercrime reporting and government grievances — plus ready-to-use letter templates and a community help board. <strong>Free. No sign-up. Your data stays in your browser (localStorage) — nothing is uploaded anywhere.</strong></p>
+    <div class="hero-actions">
+      <a class="btn" href="#guides">गाइड देखें ↓</a>
+      <a class="btn secondary" href="#letters">पत्र बनाएँ ✉️</a>
+      <button class="btn ghost" id="lang-toggle" type="button">View in English</button>
+    </div>
+    <p class="emergency">🆘 आपातकाल Emergency: <strong>112</strong> &nbsp;·&nbsp; ऑनलाइन ठगी Online fraud: <strong>1930</strong> &nbsp;·&nbsp; उपभोक्ता Consumer helpline: <strong>1915</strong></p>
+  </div>
+</header>
+
+<main class="wrap">
+  <section id="guides" aria-label="Guides">
+    <h2>📖 अधिकार गाइड — Know your rights</h2>
+    <p class="hint">Search in Hindi or English. Tick off each step as you complete it — your progress is saved in this browser.</p>
+    <div class="toolbar">
+      <input id="search" type="search" placeholder="खोजें… Search guides (e.g. RTI, FIR, राशन, 1930)" aria-label="Search guides">
+    </div>
+    <div id="cat-filters" class="chips" role="group" aria-label="Filter by category"></div>
+    <div id="guide-list" class="grid"></div>
+    <div id="guide-detail" class="detail" hidden></div>
+  </section>
+
+  <section id="letters" aria-label="Letter templates">
+    <h2>✉️ पत्र लेखक — Letter writer</h2>
+    <p class="hint">Fill the form, generate a formal Hindi/English letter, then copy it or download it as a .txt file. Nothing is sent anywhere — the letter is generated on your device.</p>
+    <div class="letter-box">
+      <label>पत्र का प्रकार — Letter type
+        <select id="template-select"></select>
+      </label>
+      <div id="template-fields" class="fields"></div>
+      <div class="row">
+        <button class="btn" id="gen-letter" type="button">पत्र बनाएँ — Generate letter</button>
+        <button class="btn secondary" id="copy-letter" type="button">कॉपी करें — Copy</button>
+        <button class="btn secondary" id="download-letter" type="button">डाउनलोड .txt</button>
+      </div>
+      <p id="letter-status" class="status" role="status"></p>
+      <label>आपका पत्र — Your letter
+        <textarea id="letter-output" rows="14" readonly placeholder="यहाँ आपका पत्र बनेगा… Your letter will appear here…"></textarea>
+      </label>
+    </div>
+  </section>
+
+  <section id="board" aria-label="Community help board">
+    <h2>🤝 मदद बोर्ड — Community help board</h2>
+    <p class="hint">Ask for help or offer it — a neighbour who knows the RTI process, someone to accompany you to the police station, a translator for a form. Posts are stored only in this browser (localStorage). Share no OTPs, passwords, bank details or full ID numbers here.</p>
+    <form id="board-form" class="board-form">
+      <label>प्रकार — Type
+        <select id="post-type">
+          <option value="request">मदद चाहिए — I need help</option>
+          <option value="offer">मदद कर सकता/सकती हूँ — I can offer help</option>
+        </select>
+      </label>
+      <label>श्रेणी — Category
+        <select id="post-category">
+          <option value="general">सामान्य — General</option>
+          <option value="rti">RTI / सूचना</option>
+          <option value="consumer">उपभोक्ता — Consumer</option>
+          <option value="police">पुलिस — Police</option>
+          <option value="cyber">साइबर — Cyber</option>
+        </select>
+      </label>
+      <label>शीर्षक — Title *
+        <input id="post-title" type="text" maxlength="120" placeholder="e.g. RTI भरने में मदद चाहिए — Need help filing an RTI">
+      </label>
+      <label>विवरण — Details *
+        <textarea id="post-desc" rows="3" maxlength="600" placeholder="क्या मदद चाहिए? Where, when, what exactly?"></textarea>
+      </label>
+      <label>स्थान — Location
+        <input id="post-location" type="text" maxlength="80" placeholder="e.g. Shirur, Maharashtra">
+      </label>
+      <label>नाम — Name (optional)
+        <input id="post-name" type="text" maxlength="60" placeholder="Anonymous if left blank">
+      </label>
+      <button class="btn" type="submit">पोस्ट करें — Publish post</button>
+      <p id="board-status" class="status" role="status"></p>
+    </form>
+    <div class="toolbar">
+      <input id="board-search" type="search" placeholder="बोर्ड खोजें… Search the board" aria-label="Search the board">
+      <select id="board-type" aria-label="Filter posts by type">
+        <option value="all">सभी पोस्ट — All</option>
+        <option value="request">मदद चाहिए — Needs help</option>
+        <option value="offer">मदद की पेशकश — Offers help</option>
+      </select>
+    </div>
+    <div id="board-list" class="grid"></div>
+  </section>
+
+  <section aria-label="About and limits">
+    <h2>ℹ️ जानकारी — About &amp; limits</h2>
+    <ul class="about">
+      <li><strong>What it is:</strong> a free, offline-first guide + letter-writing tool. It explains procedures and drafts letters — it is <strong>not legal advice</strong> and it does not file anything for you. Always check the official portal linked in each guide before acting.</li>
+      <li><strong>Your data:</strong> checklists and board posts live only in your browser's localStorage. Clearing browser data erases them. No account, no server, no tracking.</li>
+      <li><strong>Official sources linked:</strong> rtionline.gov.in (RTI), consumerhelpline.gov.in + edaakhil.nic.in (consumer), cybercrime.gov.in + helpline 1930 (cybercrime), pgportal.gov.in (CPGRAMS), nfsa.gov.in (ration). Fees and timelines (e.g. RTI ₹10, 30-day reply) follow the RTI Act, 2005 and the Consumer Protection Act, 2019 as published on those portals.</li>
+      <li><strong>Built by:</strong> Mohd Raja (devilking7x) for Code for Change 2026. Source: <a href="https://github.com/devilking7x/nagrik-sahayata">github.com/devilking7x/nagrik-sahayata</a>.</li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>नागरिक सहायता — Nagrik Sahayata · Made for Code for Change 2026 · Free &amp; open source · Not legal advice.</p>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
